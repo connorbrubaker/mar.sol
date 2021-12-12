@@ -17,7 +17,10 @@ x <- indicators$LoanPaymentsOverdue
 sxx <- sum((x - mean(x))^2)
 est.intercept <- as.numeric(fit$coefficients[1])
 est.resid.se <- summary(fit)$sigma
-pop.line.confint <- est.intercept + est.slope * xnew + 
+est.reg <- est.intercept + est.slope * xnew
+print(est.reg)
+# [1] -4.479585
+pop.line.confint <- est.reg + 
     c(-1, 1) * qt(0.975, df = nrow(indicators) - 2) *
     est.resid.se * sqrt(
         (1 / nrow(indicators)) + ((xnew - mean(x))^2 / sxx)
@@ -25,7 +28,7 @@ pop.line.confint <- est.intercept + est.slope * xnew +
 print(pop.line.confint)
 # [1] -6.648849 -2.310322
 
-# alternate - using predict
+# alternate way - using predict
 print(predict(fit, newdata = data.frame(LoanPaymentsOverdue = 4), 
               interval = "confidence"))
 #         fit       lwr       upr
