@@ -60,4 +60,17 @@
         \lstinputlisting[linerange={15-35}]{R/2.2_indicators.R}
         The estimate of $E(Y | X=4)$ is $-4.4796$. The 95\% confidence interval for this quantity is $(-6.6488, -2.3103)$. Since this interval does not include the value $0$, zero percent is not a plausible value for $E(Y | X=4)$. 
     \end{enumerate}
+
+    \section*{Problem 3}
+    \begin{enumerate}[(a)]
+        \item Use the code below to find a 95\% confidence interval for the intercept.
+        \lstinputlisting[linerange={3-9}]{R/2.3_invoices.R}
+        Hence, a 95\% confidence interval for $\beta_0$ is $(0.3912, 0.8922)$. 
+        \item Use the code below to find the test statistic and $p$-value for this hypothesis test.
+        \lstinputlisting[linerange={12-17}]{R/2.3_invoices.R}
+        Assuming a significance level of $\alpha = 0.05$, we fail to reject the null hypothesis that $\beta_1 = 0.01$. There is not significant enough evidence to suggest the slope is different from $0.01$.
+        \item Use the code below to predict the value of $E(Y | X = 130)$ and find a 95\% prediction interval for this quantity.
+        \lstinputlisting[linerange={20-29}]{R/2.3_invoices.R}
+        The output predicts $E(Y | X = 130)$ as $2.1096$ with an associated 95\% prediction interval of $(0.6309, 3.5884)$. That is, we are 95\% confident the processing time of 130 invoices is between 0.6309 and 3.5884 hours. 
+    \end{enumerate}
 \end{document}
