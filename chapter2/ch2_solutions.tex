@@ -25,9 +25,9 @@
     We begin by reading in the data and fitting a simple linear regression model to the data using the code below.
     \lstinputlisting[linerange={2-3}]{R/2.1_playbill.R}
     \begin{enumerate}[(a)]
-        \item Use the code below to find a 95\% confidence interval for the slope $\beta_1$.
+        \item Use the code below to find the desired confidence interval for the slope $\beta_1$.
         \lstinputlisting[linerange={6-11}]{R/2.1_playbill.R}
-        As we see from the output, the desired confidence interval is $(0.9515, 1.0127)$. Since the value $1$ is included in this interval, we can say $1$ is a plausible value for the slope $\beta_1$.
+        As we see from the output, the 95\% confidence interval for $\beta_1$ is $(0.9515, 1.0127)$. Since the value $1$ is included in this interval, we can say $1$ is a plausible value for the slope $\beta_1$.
         
         \item Use the code below to find the test statistic and $p$-value for this hypothesis test.
         \lstinputlisting[linerange={14-19}]{R/2.1_playbill.R}
@@ -48,4 +48,16 @@
         \caption{Prediction interval plot for Problem 1, part (d).}
         \label{fig:playbill_d}. 
     \end{figure}
+
+    \section*{Problem 2}
+    We begin by reading in the data and fitting a simple linear regression model to the data using the code below.
+    \lstinputlisting[linerange={2-4}]{R/2.2_indicators.R}
+    \begin{enumerate}[(a)]
+        \item Use the code below to find the desired confidence interval for the slope $\beta_1$.
+        \lstinputlisting[linerange={7-12}]{R/2.2_indicators.R}
+        As we see from the output, the 95\% confidence interval for $\beta_1$ is $(-4.1635, -0.3336)$. Since this interval contains entirely negative values, there is evidence of a significant negative linear association between the percentage of mortgage loans 30 days or more overdue in the latest quarter and the percent change in average home price. 
+        \item Use the code below to estimate $E(Y | X=4)$ and to find the desired confidence interval for this quantity.
+        \lstinputlisting[linerange={15-35}]{R/2.2_indicators.R}
+        The estimate of $E(Y | X=4)$ is $-4.4796$. The 95\% confidence interval for this quantity is $(-6.6488, -2.3103)$. Since this interval does not include the value $0$, zero percent is not a plausible value for $E(Y | X=4)$. 
+    \end{enumerate}
 \end{document}
