@@ -15,7 +15,7 @@ print(slope.confint)
 xnew <- 4
 x <- indicators$LoanPaymentsOverdue
 sxx <- sum((x - mean(x))^2)
-est.intercept <- as.numeric(fit$coefficients)
+est.intercept <- as.numeric(fit$coefficients[1])
 est.resid.se <- summary(fit)$sigma
 pop.line.confint <- est.intercept + est.slope * xnew + 
     c(-1, 1) * qt(0.975, df = nrow(indicators) - 2) *
@@ -23,7 +23,7 @@ pop.line.confint <- est.intercept + est.slope * xnew +
         (1 / nrow(indicators)) + ((xnew - mean(x))^2 / sxx)
     )
 print(pop.line.confint)
-# [1] -5.502869 -3.456302
+# [1] -6.648849 -2.310322
 
 # alternate - using predict
 print(predict(fit, newdata = data.frame(LoanPaymentsOverdue = 4), 
