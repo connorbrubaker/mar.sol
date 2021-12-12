@@ -17,10 +17,13 @@ print(p.value)
 # [1] 0.1257517
 
 # c - point estimate and prediction interval
-point.estimate <- est.intercept + est.slope * 130
+xnew <- 130; xmean <- 130; n <- 30
+point.estimate <- est.intercept + est.slope * xnew
+print(point.estimate)
+# [1] 2.109618
 est.resid.se <- 0.3298
 sxx <- (est.resid.se / est.slope.se)^2
-pred.int <- point.estimate + c(-1, 1) * qt(0.975, df = df) * est.resid.se * 
-    sqrt((1 / 30) + ((130 - 130)^2 / sxx))
+pred.int <- point.estimate + c(-1, 1) * qt(0.975, df = df) * 
+    est.resid.se * sqrt((1 / n) + ((xnew - xmean)^2 / sxx))
 print(pred.int)
 # [1] 0.6308769 3.5883589
