@@ -115,4 +115,24 @@
             \end{equation*}
         \end{enumerate}
     \end{enumerate}
+
+    \section*{Problem 5}
+    The correct choice is (d). Mathematically, the residual sum of squares (RSS) measures the sum of the squared (vertical) distances from the observed data points to the regression line. The observed points in Model 1 lie, on average, much closer to the regression line than do for Model 2, so we expect RSS to much much less for Model 1 than for Model 2. 
+    
+    
+    The regression sum of squares (SSreg; page 28) measures the sum of squared (vertical) distances from the values predicted by the regression line to the mean of the observed response. The slope of the regression line in Model 1 is much steeper than for Model 2, so we expect SSreg to be much greater for Model 1 than for Model 2.
+
+    In fact, we can simulate additional data that closely resembles what is provided on page 42. The code below replicates, as close as possible, these plots, shown in Figure \ref{fig:alternative_models}. 
+    \lstinputlisting[linerange={2-24}]{R/2.5_alternate_models.R}
+
+    \begin{figure}
+        \centering 
+        \includegraphics[width=\linewidth]{figures/alternative_models.png}
+        \caption{Approximate simulated data for Problem 5.}
+        \label{fig:alternative_models}
+    \end{figure}
+
+    The code below calculates and displays RSS and SSreg for each model.
+    \lstinputlisting[linerange={26-43}]{R/2.5_alternate_models.R}
+    As can be seen from the output above, RSS for Model 1 is much less than that for Model 2, while SSreg for Model 1 is much greater than that for Model 2. 
 \end{document}
