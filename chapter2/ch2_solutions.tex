@@ -19,6 +19,9 @@
     basicstyle=\footnotesize\ttfamily
 }
 
+% math shortcuts
+\newcommand{\var}{\textrm{Var}}
+
 \begin{document}
     \maketitle
     \section*{Problem 1}
@@ -72,5 +75,44 @@
         \item Use the code below to predict the value of $E(Y | X = 130)$ and find a 95\% prediction interval for this quantity.
         \lstinputlisting[linerange={20-29}]{R/2.3_invoices.R}
         The output predicts $E(Y | X = 130)$ as $2.1096$ with an associated 95\% prediction interval of $(0.6309, 3.5884)$. That is, we are 95\% confident the processing time of 130 invoices is between 0.6309 and 3.5884 hours. 
+    \end{enumerate}
+
+    \section*{Problem 4}
+    \begin{enumerate}[(a)]
+        \item Under assumption (1), the residual sum of squares (RSS) is 
+        \begin{equation}
+            \label{eq:rss_noint}
+            RSS = \sum_{i=1}^n (y_i - \hat{y}_i)^2 = \sum_{i=1}^n (y_i - \beta x_i)^2
+        \end{equation}
+        Differentiating this expression, we have that 
+        \begin{equation*}
+            \frac{\partial RSS}{\partial\beta} = -2\sum_{i=1}^n (y_i - \beta x_i)x_i = \sum_{i=1}^n x_iy_i - \beta x_i^2
+        \end{equation*}
+        Setting this expression to zero, we find that the single extrema is 
+        \begin{equation}
+            \label{eq:beta_minimizer}
+            \hat\beta = \frac{\sum_{i=1}^n x_iy_i}{\sum_{i=1}^n x_i^2}
+        \end{equation}
+        Now, since 
+        \begin{equation*}
+            \frac{\partial^2 RSS}{\partial\beta^2} = -\sum_{i=1}^n x_i^2 < 0
+        \end{equation*}
+        for all $x_1, \ldots, x_n\in\mathbb R$, the expression given in \eqref{eq:beta_minimizer} is indeed a global minimizer of \eqref{eq:rss_noint}.
+        \item Let $\hat\beta$ be given by \eqref{eq:beta_minimizer}. Note that, by assumption (1), $E(y_i) = \beta x_i$ and by assumptions (2) and (3), $\var(y_i) = \sigma^2$ for $i = 1, \ldots, n$. 
+        \begin{enumerate}[(i)]
+            \item The conditional expectation is 
+            \begin{equation*}
+                E(\hat\beta | X) = E\left(\frac{\sum_{i=1}^n x_iy_i}{\sum_{i=1}^n x_i^2}\right) = \frac{\sum_{i=1}^n x_iE(y_i)}{\sum_{i=1}^n x_i^2} = \frac{\beta\sum_{i=1}^n x_i^2}{\sum_{i=1}^n x_i^2} = \beta
+            \end{equation*}
+            \item The conditional variance is 
+            \begin{equation*}
+                \var(\hat\beta | X) = \var\left(\frac{\sum_{i=1}^n x_iy_i}{\sum_{i=1}^n x_i^2}\right) = \frac{\sum_{i=1}^n x_i^2\var(y_i)}{\left[\sum_{i=1}^n x_i^2\right]^2} = \frac{\sigma^2}{\sum_{i=1}^n x_i^2}
+            \end{equation*}
+            Note that we have utilized the independence assumption in the errors (2) which is why no covariance terms appear after the second equality.
+            \item By assumption (4) the error terms are independent normal random variables, so the $y_i$'s are, too. Since $\hat\beta$ is a linear combination of the $y_i$'s, then it follows that $\hat\beta$ is also a normal random variable. Any normal random variable is entirely determined by its first two moments (derived in the previous two parts), so we have that 
+            \begin{equation*}
+                \hat\beta | X \sim N\left(\beta, \frac{\sigma^2}{\sum_{i=1}^n x_i^2}\right)
+            \end{equation*}
+        \end{enumerate}
     \end{enumerate}
 \end{document}
